@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.ObjectPool;
-using BuildFunc = System.Action<System.Func<
+﻿using BuildFunc = System.Action<System.Func<
                     System.Func<
                         System.Collections.Generic.IDictionary<string, object>,
                         System.Threading.Tasks.Task>,

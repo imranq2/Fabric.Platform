@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
-    <Version>1.0.0-beta8</Version>
+    <Version>1.0.0-beta10</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.0-beta4" />
+    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.0-beta6" />
     <PackageReference Include="Fabric.Platform.Http" Version="1.0.0-beta4" />
     <PackageReference Include="Fabric.Platform.Logging" Version="1.0.0-beta8" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />

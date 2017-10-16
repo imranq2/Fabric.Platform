@@ -10,7 +10,7 @@ namespace Fabric.Platform.Auth
         public static AppFunc Inject(AppFunc next, string[] requiredScopes, string[] allowedPaths = null)
         {
             return env =>
-            {
+            {                
                 var ctx = new OwinContext(env);
                 if (ctx.Request.Method == "OPTIONS") return next(env);
 
@@ -24,7 +24,12 @@ namespace Fabric.Platform.Auth
                         return next(env);
                     }
                 }
+                
+                ctx.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+                ctx.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "Origin, X-Requested-With, Content-Type, Accept, Authorization" });
+                ctx.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "POST, GET, PUT, DELETE" });
                 ctx.Response.StatusCode = 403;
+
                 return Task.FromResult(0);
             };
         }
