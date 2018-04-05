@@ -14,7 +14,7 @@ namespace Fabric.Platform.UnitTests.Auth
 {
     public class AuthorizationMiddlewareTests
     {
-        private readonly AppFunc _noOp = env => Task.FromResult(0);
+        private readonly AppFunc _noOp = env => Task.CompletedTask;
 
         [Theory, MemberData(nameof(RequestUser))]
         public void AuthorizationMiddleware_Inject_ReturnsForbiddenResponse(ClaimsPrincipal claimsPrincipal, string method, HttpStatusCode statusCode)

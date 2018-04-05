@@ -27,10 +27,10 @@ namespace Fabric.Platform.Auth
                 
                 ctx.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
                 ctx.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "Origin, X-Requested-With, Content-Type, Accept, Authorization" });
-                ctx.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "POST, GET, PUT, DELETE" });
+                ctx.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "POST, GET, PUT, DELETE, PATCH" });
                 ctx.Response.StatusCode = 403;
 
-                return Task.FromResult(0);
+                return Task.CompletedTask;
             };
         }
     }
