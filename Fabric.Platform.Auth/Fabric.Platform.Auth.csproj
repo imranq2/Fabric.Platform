@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.0-beta4" />
+    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.2018040603" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="1.2.0" />
     <PackageReference Include="System.Globalization.Extensions" Version="4.3.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.3" />

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.0-beta4" />
+    <PackageReference Include="Fabric.Platform.Shared" Version="1.0.2018040603" />
     <PackageReference Include="IdentityModel" Version="2.8.0" />
   </ItemGroup>
 
