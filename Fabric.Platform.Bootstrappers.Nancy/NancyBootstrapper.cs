@@ -13,7 +13,15 @@ namespace Fabric.Platform.Bootstrappers.Nancy
         {
             var correlationToken = context.GetOwinEnvironment()?[Constants.FabricLogContextProperties.CorrelationTokenContextName] as string;
             self.Register<IHttpClientFactory>(new HttpClientFactory(settings.Authority, settings.ClientId, settings.ClientSecret,
-                correlationToken ?? "", ""));
+                correlationToken ?? string.Empty, string.Empty));
+            return self;
+        }
+
+        public static TinyIoCContainer UseHttpRequestMessageFactory(this TinyIoCContainer self, NancyContext context, IdentityServerConfidentialClientSettings settings)
+        {
+            var correlationToken = context.GetOwinEnvironment()?[Constants.FabricLogContextProperties.CorrelationTokenContextName] as string;
+            self.Register<IHttpRequestMessageFactory>(new HttpRequestMessageFactory(settings.Authority, settings.ClientId, settings.ClientSecret,
+                correlationToken ?? string.Empty, string.Empty));
             return self;
         }
     }
