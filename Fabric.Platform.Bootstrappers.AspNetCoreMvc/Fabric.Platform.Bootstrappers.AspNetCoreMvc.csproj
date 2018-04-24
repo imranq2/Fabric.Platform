@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Fabric.Platform.Http" Version="1.0.2018040605" />
-    <PackageReference Include="Fabric.Platform.Logging" Version="1.0.2018040605" />
+    <PackageReference Include="Fabric.Platform.Logging" Version="1.0.2018042402" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="1.1.1" />
   </ItemGroup>
