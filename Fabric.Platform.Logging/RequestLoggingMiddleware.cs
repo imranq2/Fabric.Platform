@@ -13,16 +13,14 @@ namespace Fabric.Platform.Logging
                 var contextSpecificLogger = logger.ForContext<RequestLoggingMiddleware>();
                 var owinContext = new OwinContext(env);
 
-                contextSpecificLogger.Information("Incoming request: {@Method}, {@Path}, {@Headers}",
+                contextSpecificLogger.Information("Incoming request: {@Method}, {@Path}",
                         owinContext.Request.Method,
-                        owinContext.Request.Path,
-                        owinContext.Request.Headers);
+                        owinContext.Request.Path);
 
                 await next(env);
 
-                contextSpecificLogger.Information("Outgoing response: {@StatusCode}, {@Headers}",
-                    owinContext.Response.StatusCode,
-                    owinContext.Response.Headers);
+                contextSpecificLogger.Information("Outgoing response: {@StatusCode}",
+                    owinContext.Response.StatusCode);
             };
         }
     }
