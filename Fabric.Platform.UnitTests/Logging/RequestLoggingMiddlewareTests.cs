@@ -29,8 +29,8 @@ namespace Fabric.Platform.UnitTests.Logging
 
             var loggerMock = new Mock<ILogger>();
             loggerMock.Setup(logger => logger.ForContext<RequestLoggingMiddleware>()).Returns(() => loggerMock.Object);
-            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>(), It.IsAny<object>())).Verifiable();
-            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<object>())).Verifiable();
+            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<object>())).Verifiable();
+            loggerMock.Setup(logger => logger.Information(It.IsAny<string>(), It.IsAny<int>())).Verifiable();
 
             //Act
             var pipeline = RequestLoggingMiddleware.Inject(_noOp, loggerMock.Object);
