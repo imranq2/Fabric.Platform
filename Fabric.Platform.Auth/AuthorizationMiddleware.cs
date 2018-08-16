@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using LibOwin;
 using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, object>, System.Threading.Tasks.Task>;
@@ -10,11 +11,11 @@ namespace Fabric.Platform.Auth
         public static AppFunc Inject(AppFunc next, string[] requiredScopes, string[] allowedPaths = null)
         {
             return env =>
-            {                
+            {
                 var ctx = new OwinContext(env);
                 if (ctx.Request.Method == "OPTIONS") return next(env);
 
-                if (allowedPaths != null && allowedPaths.Contains(ctx.Request.Path.Value)) return next(env);
+                if (allowedPaths != null && HasPath(allowedPaths, ctx.Request.Path.Value)) return next(env);
 
                 var principal = ctx.Request.User;
                 if (principal != null)
@@ -24,7 +25,7 @@ namespace Fabric.Platform.Auth
                         return next(env);
                     }
                 }
-                
+
                 ctx.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
                 ctx.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "Origin, X-Requested-With, Content-Type, Accept, Authorization" });
                 ctx.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "POST, GET, PUT, DELETE, PATCH" });
@@ -32,6 +33,23 @@ namespace Fabric.Platform.Auth
 
                 return Task.CompletedTask;
             };
+        }
+
+        private static bool HasPath(string[] allowedPaths, string pathToCheck)
+        {
+            foreach (var path in allowedPaths)
+            {
+                // if path matches one of the allowed path OR
+                // if the path starts with an allowed path that contains an Asterisk(*) at the end
+                if (path == pathToCheck ||
+                    (path.Last() == PathSymbol.AnyNumberOfCharacters &&
+                    pathToCheck.StartsWith(path.TrimEnd(PathSymbol.AnyNumberOfCharacters))))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
