@@ -37,12 +37,16 @@ namespace Fabric.Platform.Auth
 
         private static bool HasPath(string[] allowedPaths, string pathToCheck)
         {
+            if (allowedPaths == null) return false;
+            
             foreach (var path in allowedPaths)
             {
+                if (path == null) continue;
+
                 // if path matches one of the allowed path OR
                 // if the path starts with an allowed path that contains an Asterisk(*) at the end
                 if (path == pathToCheck ||
-                    (path.Last() == PathSymbol.AnyNumberOfCharacters &&
+                    (path.LastOrDefault() == PathSymbol.AnyNumberOfCharacters &&
                     pathToCheck.StartsWith(path.TrimEnd(PathSymbol.AnyNumberOfCharacters))))
                 {
                     return true;

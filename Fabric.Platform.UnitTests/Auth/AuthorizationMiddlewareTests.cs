@@ -58,6 +58,13 @@ namespace Fabric.Platform.UnitTests.Auth
 
         public static IEnumerable<object[]> AllowedPathsRequests => new[]
         {
+            new object[]{ new TestPrincipal(), "GET", "/", new []{ "" }, HttpStatusCode.Forbidden },
+            new object[]{ new TestPrincipal(), "GET", "/", new string[]{ null }, HttpStatusCode.Forbidden },
+            new object[]{ new TestPrincipal(), "GET", "/", null, HttpStatusCode.Forbidden },
+            new object[]{ new TestPrincipal(), "GET", "/", new[] { "*" }, HttpStatusCode.OK },
+            new object[]{ new TestPrincipal(), "GET", "/client", new []{ "/client*" }, HttpStatusCode.OK },
+            new object[]{ new TestPrincipal(), "GET", "/client/asdf", new []{ "/client*" }, HttpStatusCode.OK },
+            new object[]{ new TestPrincipal(), "GET", "/clien", new []{ "/client*" }, HttpStatusCode.Forbidden },
             new object[]{ new TestPrincipal(), "GET", "/authtest", new []{"/authtest"}, HttpStatusCode.OK },
             new object[]{ new TestPrincipal(), "GET", "/authtest", null, HttpStatusCode.Forbidden },
             new object[]{ new TestPrincipal(), "GET", "/authtest", new []{"/foo", "/authtest"}, HttpStatusCode.OK },
