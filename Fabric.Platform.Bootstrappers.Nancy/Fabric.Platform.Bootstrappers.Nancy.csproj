@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.2018081606" />
+    <PackageReference Include="Fabric.Platform.Auth" Version="1.0.2018081611" />
     <PackageReference Include="Fabric.Platform.Http" Version="1.0.2018040605" />
     <PackageReference Include="Fabric.Platform.Logging" Version="1.0.2018042402" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
